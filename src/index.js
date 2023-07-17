@@ -21,6 +21,14 @@ const theme = extendTheme({
   },
   fonts: {
     body: 'Ubuntu',
+    size: '16px',
+  },
+  styles: {
+    global: {
+      body: {
+        bg: 'light-gray',
+      },
+    },
   },
 });
 
