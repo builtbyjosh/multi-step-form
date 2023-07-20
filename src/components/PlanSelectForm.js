@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react';
 import { Box, Stack, Text, Image, Switch } from '@chakra-ui/react';
 import { paymentPlans } from '../data/paymentPlans';
 
-const PlanSelectForm = ({ setSelectedPlan }) => {
+const PlanSelectForm = ({ setSelectedPlan, setisYearly, isYearly }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isYearly, setisYearly] = useState(true);
-  console.log('isYearly: ', isYearly);
   const billing = isYearly ? paymentPlans.yearly : paymentPlans.monthly;
   const handleActiveItem = index => {
     setActiveIndex(index);
