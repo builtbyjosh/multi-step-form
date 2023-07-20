@@ -1,10 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Stack, Text, Image, Switch } from '@chakra-ui/react';
 import { paymentPlans } from '../data/paymentPlans';
 
-const PlanSelectForm = () => {
+const PlanSelectForm = ({ setSelectedPlan }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isYearly, setisYearly] = useState(true);
+  console.log('isYearly: ', isYearly);
   const billing = isYearly ? paymentPlans.yearly : paymentPlans.monthly;
+  const handleActiveItem = index => {
+    setActiveIndex(index);
+  };
+
+  useEffect(() => {
+    setSelectedPlan(billing[activeIndex]);
+  }, [activeIndex, isYearly]);
+
   return (
     <Box pt={12}>
       <Stack direction={'column'} spacing={6}>
@@ -18,8 +28,14 @@ const PlanSelectForm = () => {
         </Stack>
       </Stack>
       <Stack direction={'row'} my={5} justify={'space-between'}>
-        {billing.map(plan => (
-          <PlanCard planData={plan} isYearly={isYearly} />
+        {billing.map((plan, index) => (
+          <PlanCard
+            planData={plan}
+            index={index}
+            isYearly={isYearly}
+            activeIndex={activeIndex}
+            handleActiveItem={handleActiveItem}
+          />
         ))}
       </Stack>
       <Stack
@@ -44,7 +60,13 @@ const PlanSelectForm = () => {
 
 export default PlanSelectForm;
 
-const PlanCard = ({ planData, isYearly }) => {
+const PlanCard = ({
+  planData,
+  index,
+  isYearly,
+  activeIndex,
+  handleActiveItem,
+}) => {
   return (
     <Box
       border="1px"
@@ -55,15 +77,11 @@ const PlanCard = ({ planData, isYearly }) => {
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
+      onClick={() => handleActiveItem(index)}
+      bgColor={activeIndex === index ? 'light-blue' : ''}
     >
       <Image src={planData.icon} alignSelf="flex-start" />
-      <Stack
-        direction="column"
-        spacing={0}
-        // alignSelf="flex-end"
-
-        textAlign={'left'}
-      >
+      <Stack direction="column" spacing={0} textAlign={'left'}>
         <Text>{planData.name}</Text>
         <Text>
           ${planData.price}/{isYearly ? 'yr' : 'mo'}

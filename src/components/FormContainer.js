@@ -5,7 +5,7 @@ import PlanSelectForm from './PlanSelectForm';
 
 const FormContainer = () => {
   const [formStep, setFormStep] = useState(1);
-  console.log(formStep);
+  const [selectedPlan, setSelectedPlan] = useState();
   const handleNextStep = () => {
     if (formStep < 4) {
       setFormStep(prevStep => prevStep + 1);
@@ -17,12 +17,12 @@ const FormContainer = () => {
       setFormStep(prevStep => prevStep - 1);
     }
   };
-
+  console.log('SELECTED PLAN: ', selectedPlan);
   return (
     <Box mx={'auto'} maxW={'100%'}>
       <Box h={'90%'}>
         {formStep === 1 && <PersonalInfoForm />}
-        {formStep === 2 && <PlanSelectForm />}
+        {formStep === 2 && <PlanSelectForm setSelectedPlan={setSelectedPlan} />}
       </Box>
       <Box>
         <Stack
