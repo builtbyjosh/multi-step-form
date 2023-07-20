@@ -4,8 +4,6 @@ import { paymentPlans } from '../data/paymentPlans';
 
 const PlanSelectForm = () => {
   const [isYearly, setisYearly] = useState(true);
-  console.log(isYearly);
-  console.log(paymentPlans);
   const billing = isYearly ? paymentPlans.yearly : paymentPlans.monthly;
   return (
     <Box pt={12}>
@@ -19,7 +17,7 @@ const PlanSelectForm = () => {
           </Text>
         </Stack>
       </Stack>
-      <Stack direction={'row'}>
+      <Stack direction={'row'} my={5} justify={'space-between'}>
         {billing.map(plan => (
           <PlanCard planData={plan} isYearly={isYearly} />
         ))}
@@ -52,13 +50,20 @@ const PlanCard = ({ planData, isYearly }) => {
       border="1px"
       rounded="lg"
       h="150px"
+      w={'110px'}
       p={2}
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
     >
       <Image src={planData.icon} alignSelf="flex-start" />
-      <Stack direction="column" spacing={0} lineHeight={1} alignSelf="flex-end">
+      <Stack
+        direction="column"
+        spacing={0}
+        // alignSelf="flex-end"
+
+        textAlign={'left'}
+      >
         <Text>{planData.name}</Text>
         <Text>
           ${planData.price}/{isYearly ? 'yr' : 'mo'}
