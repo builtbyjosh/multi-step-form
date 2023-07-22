@@ -1,11 +1,18 @@
-import { useState, useEffect } from 'react';
 import { Box, Stack, Text, Checkbox } from '@chakra-ui/react';
 import { addOns } from '../data/paymentPlans';
 
 const AddOns = ({ setAddOnCharges, isYearly }) => {
-  //   console.log('ADD ONS: ', addOns);
   const billing = isYearly ? addOns.yearly : addOns.monthly;
 
+  const handleCheckBoxChange = (e, addOnData) => {
+    if (e.target.checked === true) {
+      setAddOnCharges(addOnCharges => [...addOnCharges, addOnData]);
+    } else {
+      setAddOnCharges(addOnCharges =>
+        addOnCharges.filter(item => item.id !== addOnData.id)
+      );
+    }
+  };
   return (
     <Box pt={12} w={'full'}>
       <Stack direction={'column'} spacing={6}>
@@ -18,7 +25,12 @@ const AddOns = ({ setAddOnCharges, isYearly }) => {
           </Text>
         </Stack>
         {billing.map((addOn, index) => (
-          <CheckBoxAddOn addOnDetails={addOn} isYearly={isYearly} />
+          <CheckBoxAddOn
+            index={index}
+            addOnDetails={addOn}
+            isYearly={isYearly}
+            handleCheckBoxChange={handleCheckBoxChange}
+          />
         ))}
       </Stack>
     </Box>
@@ -27,11 +39,14 @@ const AddOns = ({ setAddOnCharges, isYearly }) => {
 
 export default AddOns;
 
-const CheckBoxAddOn = ({ addOnDetails, isYearly }) => {
+const CheckBoxAddOn = ({ addOnDetails, isYearly, handleCheckBoxChange }) => {
   return (
     <Box p={6} w={'100%'} border="1px" rounded="lg">
       <Stack direction={'row'}>
-        <Checkbox mr={4} />
+        <Checkbox
+          mr={4}
+          onChange={e => handleCheckBoxChange(e, addOnDetails)}
+        />
         <Stack direction={'row'} justify={'space-between'} w={'full'}>
           <Stack
             direction={'column'}

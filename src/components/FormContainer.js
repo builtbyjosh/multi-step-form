@@ -1,5 +1,5 @@
 import { Box, Button, Stack } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PersonalInfoForm from './PersonalInfoForm';
 import PlanSelectForm from './PlanSelectForm';
 import AddOns from './AddOns';
@@ -8,7 +8,7 @@ const FormContainer = () => {
   const [formStep, setFormStep] = useState(1);
   const [isYearly, setIsYearly] = useState(true);
   const [selectedPlan, setSelectedPlan] = useState();
-  const [addOnCharges, setAddOnCharges] = useState();
+  const [addOnCharges, setAddOnCharges] = useState([]);
   const handleNextStep = () => {
     if (formStep < 4) {
       setFormStep(prevStep => prevStep + 1);
@@ -21,6 +21,7 @@ const FormContainer = () => {
     }
   };
   console.log('SELECTED PLAN: ', selectedPlan);
+  console.log('ADD ON CHARGES: ', addOnCharges);
   return (
     <Box mx={'auto'} maxW={'100%'}>
       <Box h={'90%'}>

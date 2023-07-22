@@ -17,21 +17,43 @@ export const paymentPlans = {
 
 export const addOns = {
   monthly: [
-    { name: 'Online service', desc: 'Access to multiplayer games', price: 1 },
-    { name: 'Larger Storage', desc: 'Extra 1TB of cloud save', price: 2 },
+    {
+      name: 'Online service',
+      desc: 'Access to multiplayer games',
+      price: 1,
+      id: 1,
+    },
+    {
+      name: 'Larger Storage',
+      desc: 'Extra 1TB of cloud save',
+      price: 2,
+      id: 2,
+    },
     {
       name: 'Customizable profile',
       desc: 'Custom theme on your profile',
       price: 2,
+      id: 3,
     },
   ],
   yearly: [
-    { name: 'Online service', desc: 'Access to multiplayer games', price: 10 },
-    { name: 'Larger Storage', desc: 'Extra 1TB of cloud save', price: 20 },
+    {
+      name: 'Online service',
+      desc: 'Access to multiplayer games',
+      price: 10,
+      id: 1,
+    },
+    {
+      name: 'Larger Storage',
+      desc: 'Extra 1TB of cloud save',
+      price: 20,
+      id: 2,
+    },
     {
       name: 'Customizable profile',
       desc: 'Custom theme on your profile',
       price: 20,
+      id: 3,
     },
   ],
 };
