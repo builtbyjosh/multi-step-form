@@ -1,8 +1,9 @@
 import { Box, Button, Stack } from '@chakra-ui/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PersonalInfoForm from './PersonalInfoForm';
 import PlanSelectForm from './PlanSelectForm';
 import AddOns from './AddOns';
+import { useForm } from 'react-hook-form';
 
 const FormContainer = () => {
   const [formStep, setFormStep] = useState(1);
@@ -14,6 +15,8 @@ const FormContainer = () => {
       setFormStep(prevStep => prevStep + 1);
     }
   };
+
+  const { form, register } = useForm();
 
   const handlePreviousStep = () => {
     if (formStep > 1) {
