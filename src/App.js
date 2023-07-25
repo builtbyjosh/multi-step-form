@@ -16,6 +16,7 @@ function App() {
         bgColor={'alabaster'}
         h={'fit-content'}
         borderRadius={'2xl'}
+        bg={'white'}
       >
         <Sidebar />
         <FormContainer />
