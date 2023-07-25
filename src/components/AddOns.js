@@ -1,5 +1,6 @@
 import { Box, Stack, Text, Checkbox } from '@chakra-ui/react';
 import { addOns } from '../data/paymentPlans';
+import { useState } from 'react';
 
 const AddOns = ({ setAddOnCharges, isYearly }) => {
   const billing = isYearly ? addOns.yearly : addOns.monthly;
@@ -40,13 +41,22 @@ const AddOns = ({ setAddOnCharges, isYearly }) => {
 export default AddOns;
 
 const CheckBoxAddOn = ({ addOnDetails, isYearly, handleCheckBoxChange }) => {
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheck = e => {
+    setIsChecked(!isChecked);
+    handleCheckBoxChange(e, addOnDetails);
+  };
   return (
-    <Box p={6} w={'100%'} border="1px" rounded="lg">
+    <Box
+      p={6}
+      w={'100%'}
+      border="1px"
+      rounded="lg"
+      borderColor={isChecked ? 'purplish-blue' : 'light-gray'}
+      bg={isChecked ? 'alabaster' : null}
+    >
       <Stack direction={'row'}>
-        <Checkbox
-          mr={4}
-          onChange={e => handleCheckBoxChange(e, addOnDetails)}
-        />
+        <Checkbox mr={4} size={'lg'} onChange={e => handleCheck(e)} />
         <Stack direction={'row'} justify={'space-between'} w={'full'}>
           <Stack
             direction={'column'}
