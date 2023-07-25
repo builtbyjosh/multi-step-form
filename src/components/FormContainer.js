@@ -4,6 +4,7 @@ import PersonalInfoForm from './PersonalInfoForm';
 import PlanSelectForm from './PlanSelectForm';
 import AddOns from './AddOns';
 import { useForm } from 'react-hook-form';
+import FinishingUp from './FinishingUp';
 
 const FormContainer = () => {
   const [formStep, setFormStep] = useState(1);
@@ -38,6 +39,14 @@ const FormContainer = () => {
         )}
         {formStep === 3 && (
           <AddOns setAddOnCharges={setAddOnCharges} isYearly={isYearly} />
+        )}
+        {formStep === 4 && (
+          <FinishingUp
+            isYearly={isYearly}
+            selectedPlan={selectedPlan}
+            addOnCharges={addOnCharges}
+            setFormStep={setFormStep}
+          />
         )}
       </Box>
       <Box>

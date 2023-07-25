@@ -1,0 +1,67 @@
+import React from 'react';
+import { Box, Stack, Text, Divider } from '@chakra-ui/react';
+
+const FinishingUp = ({ isYearly, selectedPlan, addOnCharges, setFormStep }) => {
+  let total = selectedPlan.price;
+  const calculateTotal = () => {
+    for (const charge of addOnCharges) {
+      total += charge.price;
+    }
+  };
+  console.log('RUNNING TOTAL: ', total);
+  return (
+    <Box pt={12} w={'full'} color={'cool-gray'}>
+      <Stack direction={'column'} spacing={6}>
+        <Stack>
+          <Text fontSize={'3xl'} fontWeight={'bold'} color={'marine-blue'}>
+            Finishing up
+          </Text>
+          <Text fontSize={'lg'}>
+            Double-check evertyhing looks OK before confirming.
+          </Text>
+        </Stack>
+        <Box p={4} bg={'alabaster'} rounded={'xl'}>
+          <Stack direction={'row'} justify={'space-between'}>
+            <Stack>
+              <Text fontWeight={'bold'} color={'marine-blue'}>
+                {selectedPlan.name}({isYearly ? 'Yearly' : 'Monthly'})
+              </Text>
+              <Text
+                cursor={'pointer'}
+                textDecoration={'underline'}
+                fontSize={'sm'}
+                onClick={() => setFormStep(2)}
+              >
+                Change
+              </Text>
+            </Stack>
+            <Text fontWeight={'bold'} color={'marine-blue'}>
+              ${selectedPlan.price}/{isYearly ? 'yr' : 'mo'}
+            </Text>
+          </Stack>
+          <Divider my={4} borderColor={'cool-gray'} />
+          {addOnCharges.map(charge => (
+            <Stack direction={'row'} justify={'space-between'}>
+              <Text>{charge.name}</Text>
+              <Text fontWeight={'bold'} color={'marine-blue'} fontSize={'sm'}>
+                +${charge.price}
+                {isYearly ? 'yr' : 'mo'}
+              </Text>
+            </Stack>
+          ))}
+        </Box>
+        <Box px={4}>
+          <Stack direction={'row'} justify={'space-between'}>
+            <Text>Total (per {isYearly ? 'year' : 'month'})</Text>
+
+            <Text color={'purplish-blue'} fontWeight={'bold'}>
+              ${total}/{isYearly ? 'yr' : 'mo'}
+            </Text>
+          </Stack>
+        </Box>
+      </Stack>
+    </Box>
+  );
+};
+
+export default FinishingUp;
