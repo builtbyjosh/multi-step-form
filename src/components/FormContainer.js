@@ -5,6 +5,7 @@ import PlanSelectForm from './PlanSelectForm';
 import AddOns from './AddOns';
 import { useForm } from 'react-hook-form';
 import FinishingUp from './FinishingUp';
+import ThankYou from './ThankYou';
 
 const FormContainer = () => {
   const [formStep, setFormStep] = useState(1);
@@ -12,7 +13,7 @@ const FormContainer = () => {
   const [selectedPlan, setSelectedPlan] = useState();
   const [addOnCharges, setAddOnCharges] = useState([]);
   const handleNextStep = () => {
-    if (formStep < 4) {
+    if (formStep < 5) {
       setFormStep(prevStep => prevStep + 1);
     }
   };
@@ -26,6 +27,7 @@ const FormContainer = () => {
   };
   console.log('SELECTED PLAN: ', selectedPlan);
   console.log('ADD ON CHARGES: ', addOnCharges);
+  console.log('FORM STEP: ', formStep);
   return (
     <Box mx={'auto'} maxW={'100%'}>
       <Box h={'90%'}>
@@ -48,37 +50,40 @@ const FormContainer = () => {
             setFormStep={setFormStep}
           />
         )}
+        {formStep === 5 && <ThankYou />}
       </Box>
-      <Box>
-        <Stack
-          direction={'row'}
-          justify={formStep > 1 ? 'space-between' : 'flex-end'}
-        >
-          {formStep > 1 && (
+      {formStep < 5 && (
+        <Box>
+          <Stack
+            direction={'row'}
+            justify={formStep > 1 ? 'space-between' : 'flex-end'}
+          >
+            {formStep > 1 && (
+              <Button
+                onClick={handlePreviousStep}
+                variant={'unstyled'}
+                px={3}
+                color={'cool-gray'}
+                fontWeight={'normal'}
+                cursor={'pointer'}
+              >
+                Go Back
+              </Button>
+            )}
             <Button
-              onClick={handlePreviousStep}
+              onClick={handleNextStep}
               variant={'unstyled'}
               px={3}
-              color={'cool-gray'}
+              bgColor={'marine-blue'}
+              color={'white'}
               fontWeight={'normal'}
               cursor={'pointer'}
             >
-              Go Back
+              Next Step
             </Button>
-          )}
-          <Button
-            onClick={handleNextStep}
-            variant={'unstyled'}
-            px={3}
-            bgColor={'marine-blue'}
-            color={'white'}
-            fontWeight={'normal'}
-            cursor={'pointer'}
-          >
-            Next Step
-          </Button>
-        </Stack>
-      </Box>
+          </Stack>
+        </Box>
+      )}
     </Box>
   );
 };
