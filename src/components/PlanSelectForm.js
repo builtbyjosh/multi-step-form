@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Stack, Text, Image, Switch } from '@chakra-ui/react';
 import { paymentPlans } from '../data/paymentPlans';
 
-const PlanSelectForm = ({ setSelectedPlan, setisYearly, isYearly }) => {
+const PlanSelectForm = ({ setSelectedPlan, setIsYearly, isYearly }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const billing = isYearly ? paymentPlans.yearly : paymentPlans.monthly;
   const handleActiveItem = index => {
@@ -49,7 +49,7 @@ const PlanSelectForm = ({ setSelectedPlan, setisYearly, isYearly }) => {
         rounded={'md'}
       >
         <Text>Monthly</Text>
-        <Switch isChecked={isYearly} onChange={() => setisYearly(!isYearly)} />
+        <Switch isChecked={isYearly} onChange={() => setIsYearly(!isYearly)} />
         <Text>Yearly</Text>
       </Stack>
     </Box>
