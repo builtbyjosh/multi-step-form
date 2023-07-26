@@ -2,13 +2,14 @@ import React from 'react';
 import { Box, Stack, Text, Divider } from '@chakra-ui/react';
 
 const FinishingUp = ({ isYearly, selectedPlan, addOnCharges, setFormStep }) => {
-  let total = selectedPlan.price;
   const calculateTotal = () => {
+    let total = selectedPlan.price;
     for (const charge of addOnCharges) {
       total += charge.price;
     }
+    return total;
   };
-  console.log('RUNNING TOTAL: ', total);
+  console.log('RUNNING TOTAL: ', calculateTotal());
   return (
     <Box pt={12} w={'full'} color={'cool-gray'}>
       <Stack direction={'column'} spacing={6}>
@@ -55,7 +56,7 @@ const FinishingUp = ({ isYearly, selectedPlan, addOnCharges, setFormStep }) => {
             <Text>Total (per {isYearly ? 'year' : 'month'})</Text>
 
             <Text color={'purplish-blue'} fontWeight={'bold'}>
-              ${total}/{isYearly ? 'yr' : 'mo'}
+              ${calculateTotal()}/{isYearly ? 'yr' : 'mo'}
             </Text>
           </Stack>
         </Box>
