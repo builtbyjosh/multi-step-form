@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Link, Stack, Grid } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 import Sidebar from './components/Sidebar';
 import FormContainer from './components/FormContainer';
 

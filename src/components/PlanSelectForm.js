@@ -11,6 +11,7 @@ const PlanSelectForm = ({ setSelectedPlan, setIsYearly, isYearly }) => {
 
   useEffect(() => {
     setSelectedPlan(billing[activeIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex, isYearly]);
 
   return (
