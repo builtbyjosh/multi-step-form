@@ -1,9 +1,9 @@
 import { Box, Button, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import PersonalInfoForm from './PersonalInfoForm';
 import PlanSelectForm from './PlanSelectForm';
 import AddOns from './AddOns';
-import { useForm } from 'react-hook-form';
 import FinishingUp from './FinishingUp';
 import ThankYou from './ThankYou';
 

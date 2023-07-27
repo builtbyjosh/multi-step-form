@@ -7,12 +7,12 @@ function App() {
   return (
     <Box h={'100vh'}>
       <Stack
-        direction={'row'}
-        p={4}
+        direction={{ base: 'column', md: 'row' }}
+        p={{ base: 0, md: 4 }}
         display={'flex'}
         maxW={'950px'}
         mx={'auto'}
-        mt={12}
+        mt={{ base: 0, md: 12 }}
         bgColor={'alabaster'}
         h={'fit-content'}
         borderRadius={'2xl'}
