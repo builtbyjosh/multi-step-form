@@ -10,7 +10,7 @@ import React from 'react';
 
 const PersonalInfoForm = () => {
   return (
-    <Box pt={12}>
+    <Box>
       <Stack direction={'column'} spacing={6}>
         <Stack>
           <Text fontSize={'3xl'} fontWeight={'bold'}>

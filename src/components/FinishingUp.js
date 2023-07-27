@@ -11,7 +11,7 @@ const FinishingUp = ({ isYearly, selectedPlan, addOnCharges, setFormStep }) => {
   };
   console.log('RUNNING TOTAL: ', calculateTotal());
   return (
-    <Box pt={12} w={'full'} color={'cool-gray'}>
+    <Box w={'full'} color={'cool-gray'}>
       <Stack direction={'column'} spacing={6}>
         <Stack>
           <Text fontSize={'3xl'} fontWeight={'bold'} color={'marine-blue'}>

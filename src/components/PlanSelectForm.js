@@ -15,18 +15,22 @@ const PlanSelectForm = ({ setSelectedPlan, setIsYearly, isYearly }) => {
   }, [activeIndex, isYearly]);
 
   return (
-    <Box pt={12}>
+    <Box>
       <Stack direction={'column'} spacing={6}>
         <Stack>
           <Text fontSize={'3xl'} fontWeight={'bold'}>
             Select your plan
           </Text>
-          <Text fontSize={'lg'}>
+          <Text fontSize={'lg'} color={'cool-gray'}>
             You have the option of monthly or yearly billing.
           </Text>
         </Stack>
       </Stack>
-      <Stack direction={'row'} my={5} justify={'space-between'}>
+      <Stack
+        direction={{ base: 'column', md: 'row' }}
+        my={5}
+        justify={'space-between'}
+      >
         {billing.map((plan, index) => (
           <PlanCard
             planData={plan}
@@ -68,19 +72,25 @@ const PlanCard = ({
 }) => {
   return (
     <Box
-      border="1px"
-      rounded="lg"
-      h="150px"
-      w={'110px'}
-      p={2}
-      display="flex"
-      flexDirection="column"
-      justifyContent="space-between"
+      border={'1px'}
+      rounded={'lg'}
+      h={{ base: null, md: '150px' }}
+      w={{ base: null, md: '110px' }}
+      p={{ base: 5, md: 2 }}
+      display={'flex'}
+      flexDirection={{ base: 'row', md: 'column' }}
+      justifyContent={{ base: null, md: 'space-between' }}
+      alignItems={{ base: 'flex-start', md: null }}
       onClick={() => handleActiveItem(index)}
       bgColor={activeIndex === index ? 'light-blue' : ''}
     >
-      <Image src={planData.icon} alignSelf="flex-start" />
-      <Stack direction="column" spacing={0} textAlign={'left'}>
+      <Image src={planData.icon} alignSelf={{ base: null, md: 'flex-start' }} />
+      <Stack
+        direction="column"
+        spacing={0}
+        ml={{ base: 4, md: null }}
+        textAlign={'left'}
+      >
         <Text>{planData.name}</Text>
         <Text>
           ${planData.price}/{isYearly ? 'yr' : 'mo'}

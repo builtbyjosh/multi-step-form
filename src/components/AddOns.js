@@ -15,13 +15,13 @@ const AddOns = ({ setAddOnCharges, isYearly }) => {
     }
   };
   return (
-    <Box pt={12} w={'full'}>
+    <Box w={'full'}>
       <Stack direction={'column'} spacing={6}>
         <Stack>
           <Text fontSize={'3xl'} fontWeight={'bold'}>
             Pick add-ons
           </Text>
-          <Text fontSize={'lg'}>
+          <Text fontSize={'lg'} color={'cool-gray'}>
             Add-ons help enhance your gaming experience
           </Text>
         </Stack>
@@ -48,7 +48,7 @@ const CheckBoxAddOn = ({ addOnDetails, isYearly, handleCheckBoxChange }) => {
   };
   return (
     <Box
-      p={6}
+      p={{ base: 2, md: 6 }}
       w={'100%'}
       border="1px"
       rounded="lg"
@@ -56,20 +56,26 @@ const CheckBoxAddOn = ({ addOnDetails, isYearly, handleCheckBoxChange }) => {
       bg={isChecked ? 'alabaster' : null}
     >
       <Stack direction={'row'}>
-        <Checkbox mr={4} size={'lg'} onChange={e => handleCheck(e)} />
+        <Checkbox
+          mr={{ base: 2, md: 4 }}
+          size={'lg'}
+          onChange={e => handleCheck(e)}
+        />
         <Stack direction={'row'} justify={'space-between'} w={'full'}>
           <Stack
             direction={'column'}
             spacing={0}
             textAlign={'left'}
-            lineHeight={1.1}
+            lineHeight={{ base: 1.5, md: 1.1 }}
           >
             <Text fontWeight={'bold'} fontSize={'md'}>
               {addOnDetails.name}
             </Text>
-            <Text fontSize={'msm'}>{addOnDetails.desc}</Text>
+            <Text color={'cool-gray'} fontSize={{ base: 'xs', md: 'lg' }}>
+              {addOnDetails.desc}
+            </Text>
           </Stack>
-          <Text my={'auto'}>
+          <Text my={'auto'} color={'purplish-blue'}>
             +${addOnDetails.price}/{isYearly ? 'yr' : 'mo'}
           </Text>
         </Stack>

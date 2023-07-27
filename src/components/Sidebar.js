@@ -26,7 +26,7 @@ const Sidebar = () => {
       objectFit={{ base: 'fill', md: null }}
       aspectRatio={{ base: null, md: '274/568' }}
       p={5}
-      h={{ base: '250px', md: null }}
+      h={{ base: '175px', md: null }}
     >
       <Stack pt={{ base: 5, md: 10 }} ml={{ base: 0, md: 5 }}>
         <Flex
