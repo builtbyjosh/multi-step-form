@@ -74,21 +74,24 @@ const PlanCard = ({
     <Box
       border={'1px'}
       rounded={'lg'}
-      h={{ base: null, md: '150px' }}
-      w={{ base: null, md: '110px' }}
+      h={{ base: 'unset', md: '150px' }}
+      w={{ base: 'unset', md: '110px' }}
       p={{ base: 5, md: 2 }}
       display={'flex'}
       flexDirection={{ base: 'row', md: 'column' }}
-      justifyContent={{ base: null, md: 'space-between' }}
-      alignItems={{ base: 'flex-start', md: null }}
+      justifyContent={{ base: 'unset', md: 'space-between' }}
+      alignItems={{ base: 'flex-start', md: 'unset' }}
       onClick={() => handleActiveItem(index)}
       bgColor={activeIndex === index ? 'light-blue' : ''}
     >
-      <Image src={planData.icon} alignSelf={{ base: null, md: 'flex-start' }} />
+      <Image
+        src={planData.icon}
+        alignSelf={{ base: 'unset', md: 'flex-start' }}
+      />
       <Stack
         direction="column"
         spacing={0}
-        ml={{ base: 4, md: null }}
+        ml={{ base: 4, md: 'unset' }}
         textAlign={'left'}
       >
         <Text>{planData.name}</Text>

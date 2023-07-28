@@ -23,62 +23,64 @@ function App() {
         direction={{ base: 'column', md: 'row' }}
         p={{ base: 0, md: 4 }}
         display={'flex'}
-        maxW={'950px'}
+        maxW={'800px'}
         mx={'auto'}
         mt={{ base: 0, md: 12 }}
-        bg={'light-gray'}
+        bg={{ base: 'light-gray', md: 'white' }}
         h={'fit-content'}
         borderRadius={'2xl'}
       >
         <Sidebar />
+
         <Box
           bg={'white'}
           ml={{ base: 0, md: '-30px' }}
-          borderRadius={{ base: '2xl', md: null }}
-          px={{ base: 5, md: null }}
-          mx={{ base: 5, md: null }}
+          borderRadius={{ base: '2xl', md: 'unset' }}
+          px={{ base: 5, md: 'unset' }}
+          mx={{ base: 5, md: 'unset' }}
           mt={{ base: -20, md: 0 }}
           zIndex={{ base: 'auto', md: 1 }}
+          maxW={'100%'}
         >
           <FormContainer setFormStep={setFormStep} formStep={formStep} />
-        </Box>
-        {formStep < 5 && (
-          <Box
-            p={{ base: 6, md: null }}
-            mt={{ base: 12, md: null }}
-            // my={{ base: 6, md: null }}
-            bg={'white'}
-          >
-            <Stack
-              direction={'row'}
-              justify={formStep > 1 ? 'space-between' : 'flex-end'}
+          {formStep < 5 && (
+            <Box
+              p={{ base: 6, md: 'unset' }}
+              mt={{ base: 12, md: 'unset' }}
+              // my={{ base: 6, md: 'unset' }}
+              bg={'white'}
             >
-              {formStep > 1 && (
+              <Stack
+                direction={'row'}
+                justify={formStep > 1 ? 'space-between' : 'flex-end'}
+              >
+                {formStep > 1 && (
+                  <Button
+                    onClick={handlePreviousStep}
+                    variant={'unstyled'}
+                    px={3}
+                    color={'cool-gray'}
+                    fontWeight={'normal'}
+                    cursor={'pointer'}
+                  >
+                    Go Back
+                  </Button>
+                )}
                 <Button
-                  onClick={handlePreviousStep}
+                  onClick={handleNextStep}
                   variant={'unstyled'}
                   px={3}
-                  color={'cool-gray'}
+                  bgColor={'marine-blue'}
+                  color={'white'}
                   fontWeight={'normal'}
                   cursor={'pointer'}
                 >
-                  Go Back
+                  Next Step
                 </Button>
-              )}
-              <Button
-                onClick={handleNextStep}
-                variant={'unstyled'}
-                px={3}
-                bgColor={'marine-blue'}
-                color={'white'}
-                fontWeight={'normal'}
-                cursor={'pointer'}
-              >
-                Next Step
-              </Button>
-            </Stack>
-          </Box>
-        )}
+              </Stack>
+            </Box>
+          )}
+        </Box>
       </Stack>
     </Box>
   );

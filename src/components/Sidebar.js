@@ -19,14 +19,14 @@ const Sidebar = () => {
   return (
     <Box
       bgImage={{ base: bgImageMobile, md: bgImage }}
-      bgSize={'auto'}
-      maxWidth={{ base: null, md: '274px' }}
+      // bgSize={{'auto'}}
+      maxWidth={{ base: 'unset', md: '274px' }}
       w={'100%'}
-      bgRepeat={'no-repeat'}
-      objectFit={{ base: 'fill', md: null }}
-      aspectRatio={{ base: null, md: '274/568' }}
+      bgRepeat={{ base: 'no-repeat', md: undefined }}
+      objectFit={{ base: 'fill', md: undefined }}
+      aspectRatio={{ base: undefined, md: '274/568' }}
       p={5}
-      h={{ base: '175px', md: null }}
+      h={{ base: '175px', sm: '100%' }}
     >
       <Stack pt={{ base: 5, md: 10 }} ml={{ base: 0, md: 5 }}>
         <Flex
@@ -35,7 +35,7 @@ const Sidebar = () => {
           spacing={{ base: 0, md: 8 }}
           styleType={'none'}
           textAlign={'left'}
-          mx={{ base: 'auto', md: null }}
+          mx={{ base: 'auto', md: 'unset' }}
         >
           <Box mr={{ base: 4, md: 0 }}>
             <SidebarItem
@@ -105,7 +105,7 @@ const SidebarItem = ({ step, text, activeIndex, handleActiveItem }) => {
           ml={2}
           justify={'center'}
           lineHeight={'shorter'}
-          hidden={{ base: true, md: false }}
+          display={{ base: 'none', sm: 'flex' }}
         >
           <Text fontSize={'xs'} color={'cool-gray'}>
             STEP {step}

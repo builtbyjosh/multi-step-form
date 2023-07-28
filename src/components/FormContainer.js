@@ -18,29 +18,33 @@ const FormContainer = ({ formStep, setFormStep }) => {
   console.log('ADD ON CHARGES: ', addOnCharges);
 
   return (
-    <Box mx={'auto'} maxW={'100%'}>
-      <Box py={{ base: 6, md: 12 }} h={{ base: null, md: '90%' }}>
-        {formStep === 1 && <PersonalInfoForm />}
-        {formStep === 2 && (
-          <PlanSelectForm
-            setSelectedPlan={setSelectedPlan}
-            setIsYearly={setIsYearly}
-            isYearly={isYearly}
-          />
-        )}
-        {formStep === 3 && (
-          <AddOns setAddOnCharges={setAddOnCharges} isYearly={isYearly} />
-        )}
-        {formStep === 4 && (
-          <FinishingUp
-            isYearly={isYearly}
-            selectedPlan={selectedPlan}
-            addOnCharges={addOnCharges}
-            setFormStep={setFormStep}
-          />
-        )}
-        {formStep === 5 && <ThankYou />}
-      </Box>
+    <Box
+      px={{ base: 'unset', md: 6 }}
+      py={{ base: 6, md: 12 }}
+      h={{ base: 'unset', md: '90%' }}
+      mx={'auto'}
+      maxW={'100%'}
+    >
+      {formStep === 1 && <PersonalInfoForm />}
+      {formStep === 2 && (
+        <PlanSelectForm
+          setSelectedPlan={setSelectedPlan}
+          setIsYearly={setIsYearly}
+          isYearly={isYearly}
+        />
+      )}
+      {formStep === 3 && (
+        <AddOns setAddOnCharges={setAddOnCharges} isYearly={isYearly} />
+      )}
+      {formStep === 4 && (
+        <FinishingUp
+          isYearly={isYearly}
+          selectedPlan={selectedPlan}
+          addOnCharges={addOnCharges}
+          setFormStep={setFormStep}
+        />
+      )}
+      {formStep === 5 && <ThankYou />}
     </Box>
   );
 };

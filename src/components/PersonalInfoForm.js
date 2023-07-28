@@ -10,21 +10,19 @@ import React from 'react';
 
 const PersonalInfoForm = () => {
   return (
-    <Box>
-      <Stack direction={'column'} spacing={6}>
-        <Stack>
-          <Text fontSize={'3xl'} fontWeight={'bold'}>
-            Personal info
-          </Text>
-          <Text fontSize={'lg'}>
-            Please provide your name, email address, and phone number
-          </Text>
-        </Stack>
-        <FormInput type="text" text="Name" />
-        <FormInput type="email" text="Email Address" />
-        <FormInput type="tel" text="Phone Number" />
+    <Stack direction={'column'} spacing={6}>
+      <Stack>
+        <Text fontSize={'3xl'} fontWeight={'bold'}>
+          Personal info
+        </Text>
+        <Text fontSize={'lg'}>
+          Please provide your name, email address, and phone number
+        </Text>
       </Stack>
-    </Box>
+      <FormInput type="text" text="Name" />
+      <FormInput type="email" text="Email Address" />
+      <FormInput type="tel" text="Phone Number" />
+    </Stack>
   );
 };
 
