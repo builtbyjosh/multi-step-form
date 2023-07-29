@@ -11,11 +11,7 @@ import { useState } from 'react';
 import bgImage from '../images/bg-sidebar-desktop.svg';
 import bgImageMobile from '../images/bg-sidebar-mobile.svg';
 
-const Sidebar = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const handleActiveItem = index => {
-    setActiveIndex(index);
-  };
+const Sidebar = ({ formStep }) => {
   return (
     <Box
       bgImage={{ base: bgImageMobile, md: bgImage }}
@@ -38,36 +34,16 @@ const Sidebar = () => {
           mx={{ base: 'auto', md: 'unset' }}
         >
           <Box mr={{ base: 4, md: 0 }}>
-            <SidebarItem
-              step={1}
-              text={'YOUR INFO'}
-              activeIndex={activeIndex}
-              handleActiveItem={handleActiveItem}
-            />
+            <SidebarItem step={1} text={'YOUR INFO'} formStep={formStep} />
           </Box>
           <Box mr={{ base: 4, md: 0 }}>
-            <SidebarItem
-              step={2}
-              text={'SELECT PLAN'}
-              activeIndex={activeIndex}
-              handleActiveItem={handleActiveItem}
-            />
+            <SidebarItem step={2} text={'SELECT PLAN'} formStep={formStep} />
           </Box>
           <Box mr={{ base: 4, md: 0 }}>
-            <SidebarItem
-              step={3}
-              text={'ADD-ONS'}
-              activeIndex={activeIndex}
-              handleActiveItem={handleActiveItem}
-            />
+            <SidebarItem step={3} text={'ADD-ONS'} formStep={formStep} />
           </Box>
           {/* <Box mr={{ base: 4, md: 0 }}> */}
-          <SidebarItem
-            step={4}
-            text={'SUMMARY'}
-            activeIndex={activeIndex}
-            handleActiveItem={handleActiveItem}
-          />
+          <SidebarItem step={4} text={'SUMMARY'} formStep={formStep} />
           {/* </Box> */}
         </Flex>
       </Stack>
@@ -77,23 +53,19 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-const SidebarItem = ({ step, text, activeIndex, handleActiveItem }) => {
+const SidebarItem = ({ step, text, formStep }) => {
   return (
-    <ListItem
-      onClick={() => handleActiveItem(step)}
-      cursor="pointer"
-      w={'fit-content'}
-    >
+    <ListItem w={'fit-content'}>
       <Stack direction={'row'} align={'center'} color={'light-gray'}>
         <Circle
           border={'1px'}
           size={'30px'}
-          bgColor={activeIndex === step ? 'light-blue' : ''}
+          bgColor={formStep === step ? 'light-blue' : ''}
           fontWeight={'bold'}
         >
           <Text
             fontSize={'xs'}
-            color={activeIndex === step ? 'marine-blue' : 'White'}
+            color={formStep === step ? 'marine-blue' : 'White'}
           >
             {step}
           </Text>

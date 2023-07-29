@@ -30,7 +30,7 @@ function App() {
         h={'fit-content'}
         borderRadius={'2xl'}
       >
-        <Sidebar />
+        <Sidebar formStep={formStep} />
 
         <Box
           bg={'white'}
