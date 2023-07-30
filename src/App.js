@@ -46,9 +46,11 @@ function App() {
           {formStep < 5 && (
             <Box
               p={{ base: 6, md: 'unset' }}
-              mt={{ base: 12, md: 'unset' }}
+              mt={{ base: 30, md: 'unset' }}
               // my={{ base: 6, md: 'unset' }}
               bg={'white'}
+              w={'full'}
+              position={{ base: 'absolute', md: 'unset' }}
             >
               <Stack
                 direction={'row'}
