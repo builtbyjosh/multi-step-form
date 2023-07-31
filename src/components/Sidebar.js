@@ -7,7 +7,6 @@ import {
   Circle,
   Flex,
 } from '@chakra-ui/react';
-import { useState } from 'react';
 import bgImage from '../images/bg-sidebar-desktop.svg';
 import bgImageMobile from '../images/bg-sidebar-mobile.svg';
 
@@ -15,7 +14,6 @@ const Sidebar = ({ formStep }) => {
   return (
     <Box
       bgImage={{ base: bgImageMobile, md: bgImage }}
-      // bgSize={{'auto'}}
       maxWidth={{ base: 'unset', md: '274px' }}
       w={'100%'}
       bgRepeat={{ base: 'no-repeat', md: undefined }}
@@ -42,9 +40,7 @@ const Sidebar = ({ formStep }) => {
           <Box mr={{ base: 4, md: 0 }}>
             <SidebarItem step={3} text={'ADD-ONS'} formStep={formStep} />
           </Box>
-          {/* <Box mr={{ base: 4, md: 0 }}> */}
           <SidebarItem step={4} text={'SUMMARY'} formStep={formStep} />
-          {/* </Box> */}
         </Flex>
       </Stack>
     </Box>
