@@ -30,7 +30,7 @@ function App() {
         h={'fit-content'}
         borderRadius={'2xl'}
       >
-        <Sidebar formStep={formStep} />
+        <Sidebar formStep={formStep} setFormStep={setFormStep} />
 
         <Box
           bg={'white'}
@@ -39,18 +39,22 @@ function App() {
           px={{ base: 5, md: 'unset' }}
           mx={{ base: 5, md: 'unset' }}
           mt={{ base: -20, md: 0 }}
+          mb={{ base: '150px', md: 'unset' }}
           zIndex={{ base: 'auto', md: 1 }}
           maxW={'100%'}
         >
           <FormContainer setFormStep={setFormStep} formStep={formStep} />
+
           {formStep < 5 && (
             <Box
               p={{ base: 6, md: 'unset' }}
               mt={{ base: 30, md: 'unset' }}
-              // my={{ base: 6, md: 'unset' }}
               bg={'white'}
               w={'full'}
-              position={{ base: 'absolute', md: 'unset' }}
+              position={{ base: 'fixed', md: 'unset' }}
+              bottom={{ base: 0, md: 'unset' }}
+              left={{ base: 0, md: 'unset' }}
+              right={{ base: 0, md: 'unset' }}
             >
               <Stack
                 direction={'row'}
