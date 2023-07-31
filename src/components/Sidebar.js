@@ -10,7 +10,7 @@ import {
 import bgImage from '../images/bg-sidebar-desktop.svg';
 import bgImageMobile from '../images/bg-sidebar-mobile.svg';
 
-const Sidebar = ({ formStep }) => {
+const Sidebar = ({ formStep, setFormStep }) => {
   return (
     <Box
       bgImage={{ base: bgImageMobile, md: bgImage }}
@@ -31,16 +31,18 @@ const Sidebar = ({ formStep }) => {
           textAlign={'left'}
           mx={{ base: 'auto', md: 'unset' }}
         >
-          <Box mr={{ base: 4, md: 0 }}>
+          <Box mr={{ base: 4, md: 0 }} onClick={() => setFormStep(1)}>
             <SidebarItem step={1} text={'YOUR INFO'} formStep={formStep} />
           </Box>
-          <Box mr={{ base: 4, md: 0 }}>
+          <Box mr={{ base: 4, md: 0 }} onClick={() => setFormStep(2)}>
             <SidebarItem step={2} text={'SELECT PLAN'} formStep={formStep} />
           </Box>
-          <Box mr={{ base: 4, md: 0 }}>
+          <Box mr={{ base: 4, md: 0 }} onClick={() => setFormStep(3)}>
             <SidebarItem step={3} text={'ADD-ONS'} formStep={formStep} />
           </Box>
-          <SidebarItem step={4} text={'SUMMARY'} formStep={formStep} />
+          <Box onClick={() => setFormStep(1)}>
+            <SidebarItem step={4} text={'SUMMARY'} formStep={formStep} />
+          </Box>
         </Flex>
       </Stack>
     </Box>
