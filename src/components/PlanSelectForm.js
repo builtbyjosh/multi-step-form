@@ -11,12 +11,14 @@ const PlanSelectForm = () => {
     isYearly,
     register,
     setValue,
+    errors,
   } = useContext(FormContext);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState();
   const billing = isYearly ? paymentPlans.yearly : paymentPlans.monthly;
   const handleActiveItem = index => {
     setActiveIndex(index);
   };
+  console.log('ERRORS: ', errors);
 
   useEffect(() => {
     setSelectedPlan(billing[activeIndex]);
@@ -73,6 +75,11 @@ const PlanSelectForm = () => {
         <Switch isChecked={isYearly} onChange={() => setIsYearly(!isYearly)} />
         <Text>Yearly</Text>
       </Stack>
+      {errors && errors.selectedPlan && (
+        <Text textAlign={'center'} mt={6}>
+          Please Choose a Plan to Continue
+        </Text>
+      )}
     </Box>
   );
 };
