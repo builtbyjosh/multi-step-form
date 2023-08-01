@@ -1,8 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { FormContext } from '../context/FormContext';
 import { Box, Stack, Text, Image, Switch } from '@chakra-ui/react';
 import { paymentPlans } from '../data/paymentPlans';
 
-const PlanSelectForm = ({ setSelectedPlan, setIsYearly, isYearly }) => {
+const PlanSelectForm = () => {
+  const {
+    selectedPlan,
+    setSelectedPlan,
+    setIsYearly,
+    isYearly,
+    register,
+    setValue,
+  } = useContext(FormContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const billing = isYearly ? paymentPlans.yearly : paymentPlans.monthly;
   const handleActiveItem = index => {
@@ -13,6 +22,12 @@ const PlanSelectForm = ({ setSelectedPlan, setIsYearly, isYearly }) => {
     setSelectedPlan(billing[activeIndex]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex, isYearly]);
+
+  useEffect(() => {
+    register('selectedPlan', { required: true });
+    setValue('selectedPlan', selectedPlan);
+    console.log('SELECTED PLAN: ', selectedPlan);
+  }, [selectedPlan, register, setValue]);
 
   return (
     <Box>
@@ -33,6 +48,7 @@ const PlanSelectForm = ({ setSelectedPlan, setIsYearly, isYearly }) => {
       >
         {billing.map((plan, index) => (
           <PlanCard
+            key={index}
             planData={plan}
             index={index}
             isYearly={isYearly}
@@ -66,9 +82,9 @@ export default PlanSelectForm;
 const PlanCard = ({
   planData,
   index,
-  isYearly,
   activeIndex,
   handleActiveItem,
+  isYearly,
 }) => {
   return (
     <Box

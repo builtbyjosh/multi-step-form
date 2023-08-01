@@ -1,8 +1,11 @@
 import { Box, Stack, Text, Checkbox } from '@chakra-ui/react';
 import { addOns } from '../data/paymentPlans';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { FormContext } from '../context/FormContext';
 
-const AddOns = ({ setAddOnCharges, isYearly }) => {
+const AddOns = () => {
+  const { addOnCharges, setAddOnCharges, isYearly, register, setValue } =
+    useContext(FormContext);
   const billing = isYearly ? addOns.yearly : addOns.monthly;
 
   const handleCheckBoxChange = (e, addOnData) => {
@@ -14,6 +17,12 @@ const AddOns = ({ setAddOnCharges, isYearly }) => {
       );
     }
   };
+
+  useEffect(() => {
+    register('addOns');
+    setValue('addOns', addOnCharges);
+  }, [addOnCharges, register, setValue]);
+
   return (
     <Box w={'full'}>
       <Stack direction={'column'} spacing={6}>
@@ -27,6 +36,7 @@ const AddOns = ({ setAddOnCharges, isYearly }) => {
         </Stack>
         {billing.map((addOn, index) => (
           <CheckBoxAddOn
+            key={index}
             index={index}
             addOnDetails={addOn}
             isYearly={isYearly}
@@ -40,8 +50,16 @@ const AddOns = ({ setAddOnCharges, isYearly }) => {
 
 export default AddOns;
 
-const CheckBoxAddOn = ({ addOnDetails, isYearly, handleCheckBoxChange }) => {
+const CheckBoxAddOn = ({ addOnDetails, handleCheckBoxChange }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const { isYearly, addOnCharges } = useContext(FormContext);
+  useEffect(() => {
+    const isAddOnSelected = addOnCharges.some(
+      addOn => addOn.id === addOnDetails.id
+    );
+    setIsChecked(isAddOnSelected);
+  }, [addOnCharges, addOnDetails]);
+
   const handleCheck = e => {
     setIsChecked(!isChecked);
     handleCheckBoxChange(e, addOnDetails);
@@ -57,6 +75,7 @@ const CheckBoxAddOn = ({ addOnDetails, isYearly, handleCheckBoxChange }) => {
     >
       <Stack direction={'row'}>
         <Checkbox
+          isChecked={isChecked}
           mr={{ base: 2, md: 4 }}
           size={'lg'}
           onChange={e => handleCheck(e)}

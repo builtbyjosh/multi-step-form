@@ -3,6 +3,7 @@ import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './App';
 import '@fontsource/ubuntu';
+import { FormProvider } from './context/FormContext';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -35,7 +36,9 @@ const theme = extendTheme({
 root.render(
   <StrictMode>
     <ChakraProvider theme={theme}>
-      <App />
+      <FormProvider>
+        <App />
+      </FormProvider>
     </ChakraProvider>
   </StrictMode>
 );

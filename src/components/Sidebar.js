@@ -7,10 +7,13 @@ import {
   Circle,
   Flex,
 } from '@chakra-ui/react';
+import { useContext } from 'react';
+import { FormContext } from '../context/FormContext';
 import bgImage from '../images/bg-sidebar-desktop.svg';
 import bgImageMobile from '../images/bg-sidebar-mobile.svg';
 
-const Sidebar = ({ formStep, setFormStep }) => {
+const Sidebar = () => {
+  const { formStep, setFormStep } = useContext(FormContext);
   return (
     <Box
       bgImage={{ base: bgImageMobile, md: bgImage }}
@@ -40,7 +43,7 @@ const Sidebar = ({ formStep, setFormStep }) => {
           <Box mr={{ base: 4, md: 0 }} onClick={() => setFormStep(3)}>
             <SidebarItem step={3} text={'ADD-ONS'} formStep={formStep} />
           </Box>
-          <Box onClick={() => setFormStep(1)}>
+          <Box onClick={() => setFormStep(4)}>
             <SidebarItem step={4} text={'SUMMARY'} formStep={formStep} />
           </Box>
         </Flex>

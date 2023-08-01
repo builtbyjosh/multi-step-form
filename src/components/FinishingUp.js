@@ -1,7 +1,10 @@
-import React from 'react';
+import { useContext } from 'react';
+import { FormContext } from '../context/FormContext';
 import { Box, Stack, Text, Divider } from '@chakra-ui/react';
 
-const FinishingUp = ({ isYearly, selectedPlan, addOnCharges, setFormStep }) => {
+const FinishingUp = () => {
+  const { isYearly, selectedPlan, addOnCharges, setFormStep } =
+    useContext(FormContext);
   const calculateTotal = () => {
     let total = selectedPlan.price;
     for (const charge of addOnCharges) {
@@ -41,8 +44,8 @@ const FinishingUp = ({ isYearly, selectedPlan, addOnCharges, setFormStep }) => {
             </Text>
           </Stack>
           <Divider my={4} borderColor={'cool-gray'} />
-          {addOnCharges.map(charge => (
-            <Stack direction={'row'} justify={'space-between'}>
+          {addOnCharges.map((charge, index) => (
+            <Stack key={index} direction={'row'} justify={'space-between'}>
               <Text>{charge.name}</Text>
               <Text fontWeight={'bold'} color={'marine-blue'} fontSize={'sm'}>
                 +${charge.price}

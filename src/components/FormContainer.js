@@ -1,21 +1,41 @@
-import { Box } from '@chakra-ui/react';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Box, Button, Stack } from '@chakra-ui/react';
+import { useContext } from 'react';
+import { FormContext } from '../context/FormContext';
 import PersonalInfoForm from './PersonalInfoForm';
 import PlanSelectForm from './PlanSelectForm';
 import AddOns from './AddOns';
 import FinishingUp from './FinishingUp';
 import ThankYou from './ThankYou';
 
-const FormContainer = ({ formStep, setFormStep }) => {
-  const [isYearly, setIsYearly] = useState(true);
-  const [selectedPlan, setSelectedPlan] = useState();
-  const [addOnCharges, setAddOnCharges] = useState([]);
+const FormContainer = () => {
+  const { formStep, setFormStep, handleSubmit, errors } =
+    useContext(FormContext);
 
-  const { form, register } = useForm();
+  const handlePreviousStep = () => {
+    if (formStep > 1) {
+      setFormStep(prevStep => prevStep - 1);
+    }
+  };
 
-  console.log('SELECTED PLAN: ', selectedPlan);
-  console.log('ADD ON CHARGES: ', addOnCharges);
+  const handleNextStep = async () => {
+    if (errors) {
+      console.log(errors);
+    } else {
+      console.log('no errors');
+    }
+    if (formStep < 4) {
+      const isValid = await handleSubmit();
+      if (!isValid) return;
+    }
+
+    if (formStep === 4) {
+      handleSubmit(data => {
+        console.log(data);
+      })();
+    }
+
+    setFormStep(prevStep => prevStep + 1);
+  };
 
   return (
     <Box
@@ -25,26 +45,56 @@ const FormContainer = ({ formStep, setFormStep }) => {
       mx={'auto'}
       maxW={'100%'}
     >
-      {formStep === 1 && <PersonalInfoForm />}
-      {formStep === 2 && (
-        <PlanSelectForm
-          setSelectedPlan={setSelectedPlan}
-          setIsYearly={setIsYearly}
-          isYearly={isYearly}
-        />
-      )}
-      {formStep === 3 && (
-        <AddOns setAddOnCharges={setAddOnCharges} isYearly={isYearly} />
-      )}
-      {formStep === 4 && (
-        <FinishingUp
-          isYearly={isYearly}
-          selectedPlan={selectedPlan}
-          addOnCharges={addOnCharges}
-          setFormStep={setFormStep}
-        />
-      )}
-      {formStep === 5 && <ThankYou />}
+      <form onSubmit={handleSubmit(handleNextStep)}>
+        <Box mb={20}>
+          {formStep === 1 && <PersonalInfoForm />}
+          {formStep === 2 && <PlanSelectForm />}
+          {formStep === 3 && <AddOns />}
+          {formStep === 4 && <FinishingUp />}
+          {formStep === 5 && <ThankYou />}
+        </Box>
+        {formStep < 5 && (
+          <Box
+            p={{ base: 6, md: 'unset' }}
+            mt={{ base: 30, md: 'unset' }}
+            bg={'white'}
+            w={'full'}
+            position={{ base: 'fixed', md: 'unset' }}
+            bottom={{ base: 0, md: 'unset' }}
+            left={{ base: 0, md: 'unset' }}
+            right={{ base: 0, md: 'unset' }}
+          >
+            <Stack
+              direction={'row'}
+              justify={formStep > 1 ? 'space-between' : 'flex-end'}
+            >
+              {formStep > 1 && (
+                <Button
+                  onClick={handlePreviousStep}
+                  variant={'unstyled'}
+                  px={3}
+                  color={'cool-gray'}
+                  fontWeight={'normal'}
+                  cursor={'pointer'}
+                >
+                  Go Back
+                </Button>
+              )}
+              <Button
+                type="submit"
+                variant={'unstyled'}
+                px={3}
+                bgColor={'marine-blue'}
+                color={'white'}
+                fontWeight={'normal'}
+                cursor={'pointer'}
+              >
+                {formStep === 4 ? 'Confirm' : 'Next Step'}
+              </Button>
+            </Stack>
+          </Box>
+        )}
+      </form>
     </Box>
   );
 };
