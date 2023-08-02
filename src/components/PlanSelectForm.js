@@ -43,7 +43,6 @@ const PlanSelectForm = () => {
       </Stack>
       <Stack
         direction={{ base: 'column', md: 'row' }}
-        my={5}
         justify={'space-between'}
       >
         {billing.map((plan, index) => (
@@ -59,7 +58,6 @@ const PlanSelectForm = () => {
       </Stack>
       <Stack
         direction={'row'}
-        w={'100%'}
         h={'30px'}
         align={'center'}
         justify={'center'}
@@ -68,6 +66,7 @@ const PlanSelectForm = () => {
         fontWeight={'bold'}
         spacing={8}
         rounded={'md'}
+        mb={5}
       >
         <Text>Monthly</Text>
         <Switch isChecked={isYearly} onChange={() => setIsYearly(!isYearly)} />

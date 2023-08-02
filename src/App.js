@@ -4,7 +4,7 @@ import FormContainer from './components/FormContainer';
 
 function App() {
   return (
-    <Box h={'100vh'}>
+    <Box h={'100vh'} w={'100%'}>
       <Stack
         direction={{ base: 'column', md: 'row' }}
         p={{ base: 0, md: 4 }}
@@ -27,7 +27,7 @@ function App() {
           mt={{ base: -20, md: 0 }}
           mb={{ base: '150px', md: 'unset' }}
           zIndex={{ base: 'auto', md: 1 }}
-          maxW={'100%'}
+          w={'100%'}
         >
           <FormContainer />
         </Box>

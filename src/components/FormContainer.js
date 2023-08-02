@@ -41,17 +41,17 @@ const FormContainer = () => {
     <Box
       px={{ base: 'unset', md: 6 }}
       h={{ base: 'unset', md: '100%' }}
-      mx={'auto'}
-      maxW={'100%'}
+      w={'100%'}
       position={'relative'}
     >
       <form onSubmit={handleSubmit(handleNextStep)}>
-        {formStep === 1 && <PersonalInfoForm />}
-        {formStep === 2 && <PlanSelectForm />}
-        {formStep === 3 && <AddOns />}
-        {formStep === 4 && <FinishingUp />}
-        {formStep === 5 && <ThankYou />}
-
+        <Box w={'full'}>
+          {formStep === 1 && <PersonalInfoForm />}
+          {formStep === 2 && <PlanSelectForm />}
+          {formStep === 3 && <AddOns />}
+          {formStep === 4 && <FinishingUp />}
+          {formStep === 5 && <ThankYou />}
+        </Box>
         {formStep < 5 && (
           <Box
             position={{ base: 'fixed', md: 'absolute' }}

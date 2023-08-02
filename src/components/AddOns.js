@@ -65,7 +65,6 @@ const CheckBoxAddOn = ({ addOnDetails, handleCheckBoxChange }) => {
   return (
     <Box
       p={{ base: 2, md: 6 }}
-      w={'100%'}
       border="1px"
       rounded="lg"
       borderColor={isChecked ? 'purplish-blue' : 'light-gray'}
