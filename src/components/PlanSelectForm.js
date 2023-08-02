@@ -32,16 +32,14 @@ const PlanSelectForm = () => {
   }, [selectedPlan, register, setValue]);
 
   return (
-    <Box>
-      <Stack direction={'column'} spacing={6}>
-        <Stack>
-          <Text fontSize={'3xl'} fontWeight={'bold'}>
-            Select your plan
-          </Text>
-          <Text fontSize={'lg'} color={'cool-gray'}>
-            You have the option of monthly or yearly billing.
-          </Text>
-        </Stack>
+    <Stack direction={'column'} spacing={6}>
+      <Stack>
+        <Text fontSize={'3xl'} fontWeight={'bold'}>
+          Select your plan
+        </Text>
+        <Text fontSize={'lg'} color={'cool-gray'}>
+          You have the option of monthly or yearly billing.
+        </Text>
       </Stack>
       <Stack
         direction={{ base: 'column', md: 'row' }}
@@ -80,7 +78,7 @@ const PlanSelectForm = () => {
           Please Choose a Plan to Continue
         </Text>
       )}
-    </Box>
+    </Stack>
   );
 };
 

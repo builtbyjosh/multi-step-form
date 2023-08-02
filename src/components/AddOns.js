@@ -24,27 +24,25 @@ const AddOns = () => {
   }, [addOnCharges, register, setValue]);
 
   return (
-    <Box w={'full'}>
-      <Stack direction={'column'} spacing={6}>
-        <Stack>
-          <Text fontSize={'3xl'} fontWeight={'bold'}>
-            Pick add-ons
-          </Text>
-          <Text fontSize={'lg'} color={'cool-gray'}>
-            Add-ons help enhance your gaming experience
-          </Text>
-        </Stack>
-        {billing.map((addOn, index) => (
-          <CheckBoxAddOn
-            key={index}
-            index={index}
-            addOnDetails={addOn}
-            isYearly={isYearly}
-            handleCheckBoxChange={handleCheckBoxChange}
-          />
-        ))}
+    <Stack direction={'column'} spacing={6}>
+      <Stack>
+        <Text fontSize={'3xl'} fontWeight={'bold'}>
+          Pick add-ons
+        </Text>
+        <Text fontSize={'lg'} color={'cool-gray'}>
+          Add-ons help enhance your gaming experience
+        </Text>
       </Stack>
-    </Box>
+      {billing.map((addOn, index) => (
+        <CheckBoxAddOn
+          key={index}
+          index={index}
+          addOnDetails={addOn}
+          isYearly={isYearly}
+          handleCheckBoxChange={handleCheckBoxChange}
+        />
+      ))}
+    </Stack>
   );
 };
 

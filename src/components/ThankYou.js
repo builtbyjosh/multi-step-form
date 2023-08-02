@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Image, Center } from '@chakra-ui/react';
+import { Stack, Text, Image, Center } from '@chakra-ui/react';
 import checkMark from '../images/icon-thank-you.svg';
 
 const ThankYou = () => {
