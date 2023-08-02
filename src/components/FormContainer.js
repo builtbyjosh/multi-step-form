@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from '@chakra-ui/react';
+import { Box, Button, Stack, Spacer } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { FormContext } from '../context/FormContext';
 import PersonalInfoForm from './PersonalInfoForm';
@@ -40,34 +40,31 @@ const FormContainer = () => {
   return (
     <Box
       px={{ base: 'unset', md: 6 }}
-      py={{ base: 6, md: 12 }}
-      h={{ base: 'unset', md: '90%' }}
+      h={{ base: 'unset', md: '100%' }}
       mx={'auto'}
       maxW={'100%'}
+      position={'relative'}
     >
       <form onSubmit={handleSubmit(handleNextStep)}>
-        <Box mb={20}>
-          {formStep === 1 && <PersonalInfoForm />}
-          {formStep === 2 && <PlanSelectForm />}
-          {formStep === 3 && <AddOns />}
-          {formStep === 4 && <FinishingUp />}
-          {formStep === 5 && <ThankYou />}
-        </Box>
+        {formStep === 1 && <PersonalInfoForm />}
+        {formStep === 2 && <PlanSelectForm />}
+        {formStep === 3 && <AddOns />}
+        {formStep === 4 && <FinishingUp />}
+        {formStep === 5 && <ThankYou />}
+
         {formStep < 5 && (
           <Box
-            p={{ base: 6, md: 'unset' }}
-            mt={{ base: 30, md: 'unset' }}
+            position={{ base: 'fixed', md: 'absolute' }}
+            bottom={0}
+            left={0}
+            right={0}
+            px={4}
+            py={{ base: 4, md: 'unset' }}
+            justifyContent={formStep > 1 ? 'space-between' : 'flex-end'}
             bg={'white'}
             w={'full'}
-            position={{ base: 'fixed', md: 'unset' }}
-            bottom={{ base: 0, md: 'unset' }}
-            left={{ base: 0, md: 'unset' }}
-            right={{ base: 0, md: 'unset' }}
           >
-            <Stack
-              direction={'row'}
-              justify={formStep > 1 ? 'space-between' : 'flex-end'}
-            >
+            <Stack direction={'row'} spacing={6}>
               {formStep > 1 && (
                 <Button
                   onClick={handlePreviousStep}
@@ -80,6 +77,7 @@ const FormContainer = () => {
                   Go Back
                 </Button>
               )}
+              <Spacer />
               <Button
                 type="submit"
                 variant={'unstyled'}
